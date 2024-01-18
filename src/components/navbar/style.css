@@ -1,0 +1,29 @@
+.navbar-section {
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
+  color: aliceblue;
+  z-index: 10000000;
+}
+
+.navbar-right {
+  display: flex;
+  width: 30%;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar-right a {
+  color: white;
+}

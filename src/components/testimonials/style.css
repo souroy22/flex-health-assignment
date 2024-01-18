@@ -1,0 +1,104 @@
+.gradient-text {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+  font-size: 60px;
+  -webkit-background-clip: text;
+  color: "transparent";
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.2px);
+  -webkit-backdrop-filter: blur(1.2px);
+  text-align: center;
+  width: 300px !important;
+  padding: 15px;
+  color: whitesmoke;
+  display: flex !important;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 7px;
+}
+
+.review-text {
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+
+.review-star-rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewer-photo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewer-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.testimonials-description {
+  color: white;
+  line-height: 30px;
+}
+
+.reviewer-name {
+  letter-spacing: 0.5px;
+}
+
+.testimonials-heading {
+  margin-bottom: 50px;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.review-action-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  width: 100px;
+}
+
+.action-btn {
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+.blur-effect {
+  position: absolute;
+  width: 234px;
+  height: 234px;
+  right: -33px;
+  bottom: 0;
+  background: #99094e;
+  filter: blur(160.5px);
+}
