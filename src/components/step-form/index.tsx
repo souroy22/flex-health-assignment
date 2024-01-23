@@ -108,7 +108,7 @@ const StepForm = () => {
   }, []);
 
   return (
-    <Box className="step-form-section">
+    <Box className="step-form-section" id="step-form-section">
       {successSubmitData ? (
         <Box
           sx={{

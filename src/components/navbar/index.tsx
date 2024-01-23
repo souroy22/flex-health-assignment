@@ -14,7 +14,26 @@ const Navbar = () => {
         </Box>
         <Button
           variant="contained"
-          onClick={() => document.getElementById("fullName")?.focus()}
+          onClick={() => {
+            window.scroll({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+            const formContainer = document.getElementById("step-form-section");
+            if (formContainer) {
+              formContainer.style.transition = "all 0.4s ease-in-out";
+              formContainer.animate(
+                [{ transform: "scale(1)" }, { transform: "scale(1.2)" }],
+                {
+                  duration: 1000,
+                  iterations: 1,
+                  direction: "reverse",
+                }
+              );
+            }
+            document.getElementById("fullName")?.focus();
+          }}
           sx={{
             backgroundColor: "#351F39",
             "&:hover": { backgroundColor: "#351F39" },
