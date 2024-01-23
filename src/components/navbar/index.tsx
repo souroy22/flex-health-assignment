@@ -20,7 +20,8 @@ const Navbar = () => {
               left: 0,
               behavior: "smooth",
             });
-            const formContainer = document.getElementById("step-form-section");
+            const formContainer: HTMLElement | null =
+              document.getElementById("step-form-section");
             if (formContainer) {
               formContainer.style.transition = "all 0.4s ease-in-out";
               formContainer.animate(
