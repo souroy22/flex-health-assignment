@@ -43,7 +43,7 @@ const reviewData = [
 ];
 
 const Testimonials = () => {
-  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const sliderRef = useRef<Slider | null>(null);
 
   const settings = {
     className: "center",
