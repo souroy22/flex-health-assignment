@@ -1,12 +1,29 @@
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import "./style.css";
 
-const InputField = ({ label, required, name, value, handleChange }) => {
+type PropsType = {
+  label: String;
+  required: boolean;
+  name: string;
+  value: string;
+  handleChange: (name: string, value: string) => void;
+  id?: string;
+};
+
+const InputField = ({
+  label,
+  required,
+  name,
+  value,
+  handleChange,
+  id,
+}: PropsType) => {
   return (
     <Box sx={{ textAlign: "center" }}>
       <input
         name={name}
         value={value}
+        id={id}
         onChange={(event) =>
           handleChange(event.target.name, event.target.value)
         }

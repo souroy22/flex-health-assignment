@@ -1,7 +1,11 @@
 import { Box, Chip } from "@mui/material";
-import { useState } from "react";
 
-const DoctsAppointment = ({ selectedDoctor, setSelectedDoctor }) => {
+type PropsType = {
+  selectedDoctor: string;
+  setSelectedDoctor: (name: string) => void;
+};
+
+const DoctsAppointment = ({ selectedDoctor, setSelectedDoctor }: PropsType) => {
   const data = [
     { name: "Dr. Anubabh Saha" },
     { name: "Dr. Biplab Das" },

@@ -3,10 +3,17 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const PhoneInputField = ({ handleChange, label }) => {
+type PropType = {
+  handleChange: (argType: string, phoneNumber: string) => void;
+  label: string;
+};
+
+type OnChangeFnType = (phoneNumber: string) => void;
+
+const PhoneInputField = ({ handleChange, label }: PropType) => {
   const [value, setValue] = useState("");
 
-  const onChange = (phone) => {
+  const onChange: OnChangeFnType = (phone) => {
     setValue(phone);
     handleChange && handleChange("phoneNumber", phone);
   };

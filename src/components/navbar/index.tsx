@@ -14,6 +14,7 @@ const Navbar = () => {
         </Box>
         <Button
           variant="contained"
+          onClick={() => document.getElementById("fullName")?.focus()}
           sx={{
             backgroundColor: "#351F39",
             "&:hover": { backgroundColor: "#351F39" },
