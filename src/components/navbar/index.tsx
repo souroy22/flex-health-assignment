@@ -13,7 +13,7 @@ const Navbar = () => {
           <a href="#reviews">About</a>
         </Box>
         <Button
-          variant="contained"
+          // variant="contained"
           onClick={() => {
             window.scroll({
               top: 0,
@@ -35,10 +35,10 @@ const Navbar = () => {
             }
             document.getElementById("fullName")?.focus();
           }}
-          sx={{
-            backgroundColor: "#351F39",
-            "&:hover": { backgroundColor: "#351F39" },
-          }}
+          // sx={{
+          //   backgroundColor: "#351F39",
+          //   "&:hover": { backgroundColor: "#351F39" },
+          // }}
         >
           Book Now
         </Button>
