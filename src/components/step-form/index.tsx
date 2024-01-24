@@ -51,6 +51,8 @@ type doctor = {
   id: string;
 };
 
+axios.defaults.baseURL = "https://doctors-server.onrender.com/api/v1";
+
 const StepForm = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
@@ -75,9 +77,7 @@ const StepForm = () => {
   });
 
   const getDoctorsData = async (city: string) => {
-    const data = await axios.get(
-      `http://localhost:8000/api/v1/doctors?city=${city}`
-    );
+    const data = await axios.get(`/doctors?city=${city}`);
     setDoctorsData(data.data.doctors);
   };
 
