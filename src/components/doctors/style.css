@@ -1,0 +1,30 @@
+.doctors-appointment-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* padding: 5px; */
+}
+
+.doctors-appointment-section::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.doctors-appointment-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.doctors-appointment-section::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  cursor: pointer !important;
+}
+
+/* Handle on hover */
+.doctors-appointment-section::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

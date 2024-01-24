@@ -8,12 +8,14 @@ import DoctsAppointment from "../doctors";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SearchAbleInput from "../autocompleteInput";
 import cities from "../../assets/data/cities";
+import axios from "axios";
 
 const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
-  "Create an ad",
+  "Personal Details",
+  "Addess Details",
+  "Complaints",
+  "Past Experience",
+  "Book Appointment",
 ];
 
 type GetParamsValueFnType = (param: string) => string | null;
@@ -35,22 +37,24 @@ type Step3Type = {
   previousExperience: string;
 };
 
-// type DataType = {
-//   "Step 0": Step0Type;
-//   "Step 1": Step1Type;
-//   "Step 2": Step2Type;
-//   "Step 3": Step3Type;
-// };
-
 type NewDataType = Step0Type | Step1Type | Step2Type | Step3Type;
 
 type DataType = {
   [key: string]: NewDataType;
 };
 
+type doctor = {
+  name: string;
+  slot: string;
+  city: string;
+  expertise: string;
+  id: string;
+};
+
 const StepForm = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
+  const [doctorsData, setDoctorsData] = useState<doctor[]>([]);
 
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -70,7 +74,15 @@ const StepForm = () => {
     "Step 3": { previousExperience: "" },
   });
 
+  const getDoctorsData = async (city: string) => {
+    const data = await axios.get(
+      `http://localhost:8000/api/v1/doctors?city=${city}`
+    );
+    setDoctorsData(data.data.doctors);
+  };
+
   const handleChange = (name: string, value: string) => {
+    console.log(`Name ${name}, value: ${value}`);
     const newData: NewDataType = {
       ...(data[`Step ${currentStep}`] as NewDataType),
       [name]: value,
@@ -97,6 +109,22 @@ const StepForm = () => {
     setData(() => data);
     setIsValid(check);
     setFakeUpdate(!fakeUpdate);
+  };
+
+  const onHandleContinue = () => {
+    if (currentStep < steps.length) {
+      if (currentStep === 1 && Number((data["Step 1"] as Step1Type).age) < 40) {
+        setCurrentStep(currentStep + 2);
+      } else if (currentStep === 3) {
+        getDoctorsData((data["Step 1"] as Step1Type).city);
+        setCurrentStep(currentStep + 1);
+      } else {
+        setCurrentStep(currentStep + 1);
+      }
+      setIsValid(true);
+    } else {
+      setSuccessSubmitData(true);
+    }
   };
 
   useEffect(() => {
@@ -231,6 +259,7 @@ const StepForm = () => {
               )}
               {currentStep === 4 && (
                 <DoctsAppointment
+                  doctorsData={doctorsData}
                   selectedDoctor={selectedDoctor}
                   setSelectedDoctor={setSelectedDoctor}
                 />
@@ -245,21 +274,7 @@ const StepForm = () => {
                   backgroundImage:
                     "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
                 }}
-                onClick={() => {
-                  if (currentStep < steps.length) {
-                    if (
-                      currentStep === 1 &&
-                      Number((data["Step 1"] as Step1Type).age) < 40
-                    ) {
-                      setCurrentStep(currentStep + 2);
-                    } else {
-                      setCurrentStep(currentStep + 1);
-                    }
-                    setIsValid(true);
-                  } else {
-                    setSuccessSubmitData(true);
-                  }
-                }}
+                onClick={onHandleContinue}
               >
                 {currentStep === steps.length ? "Book Appoinment" : "Continue"}
               </Button>

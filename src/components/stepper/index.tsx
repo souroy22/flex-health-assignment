@@ -7,11 +7,13 @@ import StepLabel from "@mui/material/StepLabel";
 import MessageIcon from "@mui/icons-material/Message";
 import InfoIcon from "@mui/icons-material/Info";
 import PersonIcon from "@mui/icons-material/Person";
+import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import { StepIconProps } from "@mui/material/StepIcon";
+import "./style.css";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -66,10 +68,11 @@ function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
 
   const icons: { [index: string]: React.ReactElement } = {
-    1: <PersonIcon />,
-    2: <ManageAccountsIcon />,
-    3: <MessageIcon />,
-    4: <InfoIcon />,
+    1: <PersonIcon className="stepper-icon" />,
+    2: <ManageAccountsIcon className="stepper-icon" />,
+    3: <MessageIcon className="stepper-icon" />,
+    4: <InfoIcon className="stepper-icon" />,
+    5: <BookOnlineIcon className="stepper-icon" />,
   };
 
   return (
@@ -97,7 +100,23 @@ const CustomizedSteppers = ({ steps, activeStep }: PropType) => {
       >
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+            <StepLabel
+              className="stepper-1"
+              StepIconComponent={ColorlibStepIcon}
+              sx={{
+                "& .MuiStepLabel-label": {
+                  fontSize: "12px",
+                  color: "#b8b5b5 !important",
+                  fontWeight: "400 !important",
+                },
+                "& .Mui-completed": {
+                  fontWeight: "600 !important",
+                  color: "white !important",
+                },
+              }}
+            >
+              {label}
+            </StepLabel>
           </Step>
         ))}
       </Stepper>

@@ -38,6 +38,7 @@ const SearchAbleInput = ({
         disablePortal
         id="combo-box-demo"
         options={cities}
+        onChange={(event, option) => handleChange(name, option?.label || "")}
         sx={{ width: "83%", "& .MuiAutocomplete-inputRoot": { paddingTop: 0 } }}
         renderInput={(params) => (
           <TextField
