@@ -132,7 +132,6 @@ const StepForm = () => {
 
   const onStart = (val: string) => {
     val = capitalizeFirstLetter(val);
-    setCityDefaultValue(val);
     const newData = { ...data["Step 1"], ["city"]: val };
     data["Step 1"] = newData;
     setData(data);
