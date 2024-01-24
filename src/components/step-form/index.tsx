@@ -54,16 +54,12 @@ type doctor = {
 axios.defaults.baseURL = "https://doctors-server.onrender.com/api/v1";
 
 const StepForm = () => {
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
   const [doctorsData, setDoctorsData] = useState<doctor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [cityDefaultValue, setCityDefaultValue] = useState<string | null>(null);
-
   const [isValid, setIsValid] = useState<boolean>(true);
-
   const [fakeUpdate, setFakeUpdate] = useState<boolean>(false);
-
   const [successSubmitData, setSuccessSubmitData] = useState<boolean>(false);
 
   const getParamsValue: GetParamsValueFnType = (param) => {
@@ -241,7 +237,6 @@ const StepForm = () => {
                   required
                   value={(data["Step 1"] as Step1Type).city}
                   handleChange={handleChange}
-                  defaultValue={cityDefaultValue}
                 />
               )}
               {currentStep === 1 && (
