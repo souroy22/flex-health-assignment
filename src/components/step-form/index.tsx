@@ -6,6 +6,8 @@ import CustomizedSteppers from "../stepper";
 import { useEffect, useState } from "react";
 import DoctsAppointment from "../doctors";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import SearchAbleInput from "../autocompleteInput";
+import cities from "../../assets/data/cities";
 
 const steps = [
   "Select campaign settings",
@@ -47,7 +49,7 @@ type DataType = {
 };
 
 const StepForm = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
 
   const [isValid, setIsValid] = useState<boolean>(true);
@@ -191,10 +193,11 @@ const StepForm = () => {
                 />
               )}
               {currentStep === 1 && (
-                <InputField
+                <SearchAbleInput
+                  cities={cities}
                   name="city"
-                  label="City"
-                  required={true}
+                  label="city"
+                  required
                   value={(data["Step 1"] as Step1Type).city}
                   handleChange={handleChange}
                 />
