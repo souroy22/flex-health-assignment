@@ -14,6 +14,7 @@ type PropsType = {
   label: string;
   required: boolean;
   handleChange: (name: string, value: string) => void;
+  defaultValue: string | null;
 };
 
 const SearchAbleInput = ({
@@ -23,7 +24,10 @@ const SearchAbleInput = ({
   handleChange,
   label,
   required,
+  defaultValue,
 }: PropsType) => {
+  console.log("Value ----> ", value);
+
   return (
     <Box
       sx={{
@@ -38,7 +42,7 @@ const SearchAbleInput = ({
         disablePortal
         id="combo-box-demo"
         options={cities}
-        onChange={(event, option) => handleChange(name, option?.label || "")}
+        onChange={(_, option) => handleChange(name, option?.label || "")}
         sx={{ width: "83%", "& .MuiAutocomplete-inputRoot": { paddingTop: 0 } }}
         renderInput={(params) => (
           <TextField
@@ -68,6 +72,7 @@ const SearchAbleInput = ({
             placeholder={`${label}${required ? "*" : ""}`}
             name={name}
             value={value}
+            defaultValue={defaultValue}
             onChange={(event) =>
               handleChange(event.target.name, event.target.value)
             }

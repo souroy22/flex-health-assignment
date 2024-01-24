@@ -1,4 +1,4 @@
-import { Box, Chip } from "@mui/material";
+import { Box, Chip, CircularProgress } from "@mui/material";
 import "./style.css";
 
 type doctor = {
@@ -17,6 +17,7 @@ type PropsType = {
   selectedDoctor: string;
   setSelectedDoctor: (name: string) => void;
   doctorsData: doctor[];
+  isLoading: boolean;
 };
 
 export const ChipLabel = ({ doctorData }: DoctorPropType) => {
@@ -53,26 +54,43 @@ const DoctsAppointment = ({
   selectedDoctor,
   setSelectedDoctor,
   doctorsData,
+  isLoading,
 }: PropsType) => {
   return (
     <Box className="doctors-appointment-section">
-      {doctorsData.map((doctr) => (
-        <Chip
-          label={<ChipLabel doctorData={doctr} />}
+      {isLoading ? (
+        <Box
           sx={{
-            height: "auto",
-            padding: "5px",
-            backgroundColor: selectedDoctor === doctr.name ? "navy" : "orange",
-            color: "white",
-            cursor: "pointer",
+            display: "flex",
+            flexWrap: "wrap",
+            height: "100px",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          onClick={() =>
-            doctr.name === selectedDoctor
-              ? setSelectedDoctor("")
-              : setSelectedDoctor(doctr.name)
-          }
-        />
-      ))}
+        >
+          <CircularProgress sx={{ color: "whitesmoke" }} />
+        </Box>
+      ) : (
+        doctorsData.map((doctr) => (
+          <Chip
+            label={<ChipLabel doctorData={doctr} />}
+            sx={{
+              height: "auto",
+              padding: "5px",
+              backgroundColor:
+                selectedDoctor === doctr.name ? "navy" : "orange",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              doctr.name === selectedDoctor
+                ? setSelectedDoctor("")
+                : setSelectedDoctor(doctr.name)
+            }
+          />
+        ))
+      )}
     </Box>
   );
 };

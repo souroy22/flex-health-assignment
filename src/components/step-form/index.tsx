@@ -57,6 +57,8 @@ const StepForm = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
   const [doctorsData, setDoctorsData] = useState<doctor[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [cityDefaultValue, setCityDefaultValue] = useState<string | null>(null);
 
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -77,12 +79,13 @@ const StepForm = () => {
   });
 
   const getDoctorsData = async (city: string) => {
+    setLoading(true);
     const data = await axios.get(`/doctors?city=${city}`);
+    setLoading(false);
     setDoctorsData(data.data.doctors);
   };
 
   const handleChange = (name: string, value: string) => {
-    console.log(`Name ${name}, value: ${value}`);
     const newData: NewDataType = {
       ...(data[`Step ${currentStep}`] as NewDataType),
       [name]: value,
@@ -127,13 +130,23 @@ const StepForm = () => {
     }
   };
 
+  const capitalizeFirstLetter = (val: string) => {
+    return val.charAt(0).toUpperCase() + val.slice(1);
+  };
+
+  const onStart = (val: string) => {
+    val = capitalizeFirstLetter(val);
+    setCityDefaultValue(val);
+    const newData = { ...data["Step 1"], ["city"]: val };
+    data["Step 1"] = newData;
+    setData(data);
+    setFakeUpdate(!fakeUpdate);
+  };
+
   useEffect(() => {
     const val = getParamsValue("city");
     if (val !== null) {
-      const newData = { ...data["Step 1"], ["city"]: val };
-      data["Step 1"] = newData;
-      setData(data);
-      setFakeUpdate(!fakeUpdate);
+      onStart(val);
     }
   }, []);
 
@@ -228,6 +241,7 @@ const StepForm = () => {
                   required
                   value={(data["Step 1"] as Step1Type).city}
                   handleChange={handleChange}
+                  defaultValue={cityDefaultValue}
                 />
               )}
               {currentStep === 1 && (
@@ -262,6 +276,7 @@ const StepForm = () => {
                   doctorsData={doctorsData}
                   selectedDoctor={selectedDoctor}
                   setSelectedDoctor={setSelectedDoctor}
+                  isLoading={loading}
                 />
               )}
               <Button
