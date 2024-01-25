@@ -1,7 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
 
 type CityType = {
   label: string;
