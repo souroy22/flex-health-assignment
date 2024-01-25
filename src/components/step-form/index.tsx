@@ -54,7 +54,7 @@ type doctor = {
 axios.defaults.baseURL = "https://doctors-server.onrender.com/api/v1";
 
 const StepForm = () => {
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
   const [doctorsData, setDoctorsData] = useState<doctor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
