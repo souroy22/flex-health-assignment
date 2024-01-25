@@ -221,7 +221,7 @@ const StepForm = () => {
             />
           )}
           {currentStep === 0 && (
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box className="phone-field-container">
               <PhoneInputField
                 handleChange={handleChange}
                 label="Phone Number"

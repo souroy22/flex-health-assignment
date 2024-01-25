@@ -5,7 +5,54 @@
   max-height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
-  /* padding: 5px; */
+}
+
+.doctor-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.doctor-expertise {
+  background-color: #21ea8d;
+  color: #19072e;
+  font-weight: 600;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.loader-section {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-doctor-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.no-doctor-text {
+  color: white;
+  font-weight: 600;
+}
+
+.chip-container {
+  height: auto;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .doctors-appointment-section::-webkit-scrollbar {
