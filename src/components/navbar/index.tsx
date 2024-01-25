@@ -28,7 +28,12 @@ const Navbar = () => {
 
   return (
     <Box className="navbar-section">
-      <Box className="navbar-left">Logo</Box>
+      <Box className="navbar-left">
+        <img
+          src="src/assets/images/_85c28ae3-59ee-411a-a946-7becf1876ea6.jpg"
+          style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+        />
+      </Box>
       <Box className="navbar-right">
         <Box>
           <a href="#">Home</a>

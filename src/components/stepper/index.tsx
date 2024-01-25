@@ -109,6 +109,10 @@ const CustomizedSteppers = ({ steps, activeStep }: PropType) => {
                   color: "#b8b5b5 !important",
                   fontWeight: "400 !important",
                 },
+                "& .Mui-active": {
+                  fontWeight: "600 !important",
+                  color: "white !important",
+                },
                 "& .Mui-completed": {
                   fontWeight: "600 !important",
                   color: "white !important",

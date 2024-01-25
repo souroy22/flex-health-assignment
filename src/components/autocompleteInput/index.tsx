@@ -1,6 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
+import { useEffect } from "react";
 
 type CityType = {
   label: string;
@@ -24,7 +25,15 @@ const SearchAbleInput = ({
   label,
   required,
 }: PropsType) => {
-  console.log("Value ----> ", value);
+  useEffect(() => {
+    if (value) {
+      console.log("Value ----> ", value);
+      const cityField = document.getElementsByName("city");
+      if (cityField && cityField.length) {
+        cityField[0].value = value;
+      }
+    }
+  }, [value]);
 
   return (
     <Box

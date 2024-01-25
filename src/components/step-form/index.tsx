@@ -111,7 +111,7 @@ const StepForm = () => {
   };
 
   const onHandleContinue = () => {
-    if (currentStep < steps.length) {
+    if (currentStep < steps.length - 1) {
       if (currentStep === 1 && Number((data["Step 1"] as Step1Type).age) < 40) {
         setCurrentStep(currentStep + 2);
       } else if (currentStep === 3) {
@@ -144,6 +144,8 @@ const StepForm = () => {
       onStart(val);
     }
   }, []);
+
+  console.log("Current Step", currentStep);
 
   return (
     <Box className="step-form-section" id="step-form-section">
@@ -197,97 +199,110 @@ const StepForm = () => {
 
       {!successSubmitData && (
         <Box className="form-container">
-          {successSubmitData ? (
-            <></>
+          {currentStep === 0 && (
+            <InputField
+              name="fullName"
+              value={(data["Step 0"] as Step0Type).fullName}
+              label="Full Name"
+              required={true}
+              handleChange={handleChange}
+              id="fullName"
+            />
+          )}
+          {currentStep === 0 && (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <PhoneInputField
+                handleChange={handleChange}
+                label="Phone Number"
+              />
+            </Box>
+          )}
+          {currentStep === 1 && (
+            <InputField
+              name="age"
+              label="age"
+              required={true}
+              value={(data["Step 1"] as Step1Type).age}
+              handleChange={handleChange}
+            />
+          )}
+          {currentStep === 1 && (
+            <SearchAbleInput
+              cities={cities}
+              name="city"
+              label="city"
+              required
+              value={(data["Step 1"] as Step1Type).city}
+              handleChange={handleChange}
+            />
+          )}
+          {currentStep === 1 && (
+            <InputField
+              name="company"
+              label="Company"
+              required={true}
+              value={(data["Step 1"] as Step1Type).company}
+              handleChange={handleChange}
+            />
+          )}
+          {currentStep === 2 && (
+            <InputField
+              name="complaints"
+              label="Enter your Complaints"
+              required={true}
+              value={(data["Step 2"] as Step2Type).complaints}
+              handleChange={handleChange}
+            />
+          )}
+          {currentStep === 3 && (data["Step 1"] as Step1Type).age && (
+            <InputField
+              name="previousExperience"
+              label="Any previous experience with physiotherapy"
+              required={true}
+              value={(data["Step 3"] as Step3Type).previousExperience}
+              handleChange={handleChange}
+            />
+          )}
+          {currentStep === 4 && (
+            <DoctsAppointment
+              doctorsData={doctorsData}
+              selectedDoctor={selectedDoctor}
+              setSelectedDoctor={setSelectedDoctor}
+              isLoading={loading}
+            />
+          )}
+          {!(currentStep === 4 && !loading && !doctorsData.length) ? (
+            <Button
+              variant="contained"
+              disabled={currentStep === 4 ? !selectedDoctor.trim() : isValid}
+              sx={{
+                minWidth: "100px",
+                margin: "0 auto",
+                marginTop: "10px",
+                backgroundImage:
+                  "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+              }}
+              onClick={onHandleContinue}
+            >
+              {currentStep === steps.length ? "Book Appoinment" : "Continue"}
+            </Button>
           ) : (
-            <>
-              {currentStep === 0 && (
-                <InputField
-                  name="fullName"
-                  value={(data["Step 0"] as Step0Type).fullName}
-                  label="Full Name"
-                  required={true}
-                  handleChange={handleChange}
-                  id="fullName"
-                />
-              )}
-              {currentStep === 0 && (
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <PhoneInputField
-                    handleChange={handleChange}
-                    label="Phone Number"
-                  />
-                </Box>
-              )}
-              {currentStep === 1 && (
-                <InputField
-                  name="age"
-                  label="age"
-                  required={true}
-                  value={(data["Step 1"] as Step1Type).age}
-                  handleChange={handleChange}
-                />
-              )}
-              {currentStep === 1 && (
-                <SearchAbleInput
-                  cities={cities}
-                  name="city"
-                  label="city"
-                  required
-                  value={(data["Step 1"] as Step1Type).city}
-                  handleChange={handleChange}
-                />
-              )}
-              {currentStep === 1 && (
-                <InputField
-                  name="company"
-                  label="Company"
-                  required={true}
-                  value={(data["Step 1"] as Step1Type).company}
-                  handleChange={handleChange}
-                />
-              )}
-              {currentStep === 2 && (
-                <InputField
-                  name="complaints"
-                  label="Enter your Complaints"
-                  required={true}
-                  value={(data["Step 2"] as Step2Type).complaints}
-                  handleChange={handleChange}
-                />
-              )}
-              {currentStep === 3 && (data["Step 1"] as Step1Type).age && (
-                <InputField
-                  name="previousExperience"
-                  label="Any previous experience with physiotherapy"
-                  required={true}
-                  value={(data["Step 3"] as Step3Type).previousExperience}
-                  handleChange={handleChange}
-                />
-              )}
-              {currentStep === 4 && (
-                <DoctsAppointment
-                  doctorsData={doctorsData}
-                  selectedDoctor={selectedDoctor}
-                  setSelectedDoctor={setSelectedDoctor}
-                  isLoading={loading}
-                />
-              )}
-              <Button
-                variant="contained"
-                disabled={currentStep === 4 ? !selectedDoctor.trim() : isValid}
-                sx={{
-                  minWidth: "100px",
-                  margin: "0 auto",
-                  marginTop: "10px",
-                  backgroundImage:
-                    "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
-                }}
-                onClick={onHandleContinue}
-              >
-                {currentStep === steps.length ? "Book Appoinment" : "Continue"}
-              </Button>
-            </>
+            <Button
+              variant="contained"
+              sx={{ width: "210px", margin: "0 auto" }}
+              onClick={() => {
+                setSuccessSubmitData(false);
+                setData({
+                  "Step 0": { fullName: "", phoneNumber: "" },
+                  "Step 1": { age: "", city: "", company: "" },
+                  "Step 2": { complaints: "" },
+                  "Step 3": { previousExperience: "" },
+                });
+                setCurrentStep(0);
+              }}
+            >
+              Create a new Booking
+            </Button>
           )}
         </Box>
       )}

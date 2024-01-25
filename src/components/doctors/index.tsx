@@ -1,4 +1,5 @@
 import { Box, Chip, CircularProgress } from "@mui/material";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import "./style.css";
 
 type doctor = {
@@ -70,6 +71,27 @@ const DoctsAppointment = ({
           }}
         >
           <CircularProgress sx={{ color: "whitesmoke" }} />
+        </Box>
+      ) : !doctorsData.length ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            margin: "0 auto",
+          }}
+        >
+          <SentimentDissatisfiedIcon
+            sx={{
+              fontSize: "6rem !important",
+              color: "#dc7373",
+            }}
+          />
+          <span style={{ color: "white", fontWeight: 600 }}>
+            Sorry we donot have service for your city
+          </span>
         </Box>
       ) : (
         doctorsData.map((doctr) => (
