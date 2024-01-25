@@ -7,16 +7,6 @@
   overflow-x: hidden;
 }
 
-.doctor-container {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  flex-wrap: wrap;
-  text-align: center;
-  align-items: center;
-  gap: 5px;
-}
-
 .doctor-expertise {
   background-color: #21ea8d;
   color: #19072e;

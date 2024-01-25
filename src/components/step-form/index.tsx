@@ -3,7 +3,7 @@ import "./style.css";
 import InputField from "../text-field";
 import PhoneInputField from "../phone-input-field";
 import CustomizedSteppers from "../stepper";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DoctsAppointment from "../doctors";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SearchAbleInput from "../autocompleteInput";
@@ -17,8 +17,6 @@ const steps = [
   "Past Experience",
   "Book Appointment",
 ];
-
-type GetParamsValueFnType = (param: string) => string | null;
 
 type Step0Type = {
   fullName: string;
@@ -63,11 +61,6 @@ const StepForm = () => {
   const [successSubmitData, setSuccessSubmitData] = useState<boolean>(false);
   const [validCity, setValidCity] = useState<boolean>(false);
 
-  const getParamsValue: GetParamsValueFnType = (param) => {
-    let params = new URLSearchParams(document.location.search);
-    return params.get(param) || null;
-  };
-
   const [data, setData] = useState<DataType>({
     "Step 0": { fullName: "", phoneNumber: "" },
     "Step 1": { age: "", city: "", company: "" },
@@ -94,6 +87,13 @@ const StepForm = () => {
     data[`Step ${currentStep}`] = newData;
     let check: boolean = false;
     const obj: NewDataType = data[`Step ${currentStep}`];
+    if (name === "city") {
+      if (!isValidCity) {
+        check = true;
+      }
+    } else {
+      check = validCity;
+    }
     for (const [key, val] of Object.entries(obj)) {
       if (key === "phoneNumber") {
         check = val.length !== 12;
@@ -110,13 +110,7 @@ const StepForm = () => {
         break;
       }
     }
-    if (name === "city") {
-      if (!isValidCity) {
-        check = true;
-      }
-    } else {
-      check = validCity;
-    }
+
     setData(() => data);
     setIsValid(check);
     setFakeUpdate(!fakeUpdate);
@@ -138,25 +132,6 @@ const StepForm = () => {
       setSuccessSubmitData(true);
     }
   };
-
-  const capitalizeFirstLetter = (val: string) => {
-    return val.charAt(0).toUpperCase() + val.slice(1);
-  };
-
-  const onStart = (val: string) => {
-    val = capitalizeFirstLetter(val);
-    const newData = { ...data["Step 1"], ["city"]: val };
-    data["Step 1"] = newData;
-    setData(data);
-    setFakeUpdate(!fakeUpdate);
-  };
-
-  useEffect(() => {
-    const val = getParamsValue("city");
-    if (val !== null) {
-      onStart(val);
-    }
-  }, []);
 
   return (
     <Box className="step-form-section" id="step-form-section">
