@@ -110,8 +110,12 @@ const StepForm = () => {
         break;
       }
     }
-    if (!isValidCity) {
-      check = true;
+    if (name === "city") {
+      if (!isValidCity) {
+        check = true;
+      }
+    } else {
+      check = validCity;
     }
     setData(() => data);
     setIsValid(check);
