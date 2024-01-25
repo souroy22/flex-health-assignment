@@ -8,12 +8,14 @@ type PropsType = {
   value: string;
   handleChange: (name: string, value: string) => void;
   id?: string;
+  type?: string;
 };
 
 const InputField = ({
   label,
   required,
   name,
+  type,
   value,
   handleChange,
   id,
@@ -21,6 +23,7 @@ const InputField = ({
   return (
     <Box sx={{ textAlign: "center" }}>
       <input
+        type={type ? type : "text"}
         name={name}
         value={value}
         id={id}

@@ -54,13 +54,14 @@ type doctor = {
 axios.defaults.baseURL = "https://doctors-server.onrender.com/api/v1";
 
 const StepForm = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedDoctor, setSelectedDoctor] = useState<string>("");
   const [doctorsData, setDoctorsData] = useState<doctor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(true);
   const [fakeUpdate, setFakeUpdate] = useState<boolean>(false);
   const [successSubmitData, setSuccessSubmitData] = useState<boolean>(false);
+  const [validCity, setValidCity] = useState<boolean>(false);
 
   const getParamsValue: GetParamsValueFnType = (param) => {
     let params = new URLSearchParams(document.location.search);
@@ -81,7 +82,11 @@ const StepForm = () => {
     setDoctorsData(data.data.doctors);
   };
 
-  const handleChange = (name: string, value: string) => {
+  const handleChange = (
+    name: string,
+    value: string,
+    isValidCity: boolean = true
+  ) => {
     const newData: NewDataType = {
       ...(data[`Step ${currentStep}`] as NewDataType),
       [name]: value,
@@ -104,6 +109,9 @@ const StepForm = () => {
       if (check) {
         break;
       }
+    }
+    if (!isValidCity) {
+      check = true;
     }
     setData(() => data);
     setIsValid(check);
@@ -219,6 +227,7 @@ const StepForm = () => {
           {currentStep === 1 && (
             <InputField
               name="age"
+              type="number"
               label="age"
               required={true}
               value={(data["Step 1"] as Step1Type).age}
@@ -230,6 +239,8 @@ const StepForm = () => {
               cities={cities}
               name="city"
               label="city"
+              validCity={validCity}
+              setValidCity={setValidCity}
               required
               value={(data["Step 1"] as Step1Type).city}
               handleChange={handleChange}
