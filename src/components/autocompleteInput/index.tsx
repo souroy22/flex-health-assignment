@@ -8,6 +8,8 @@ type CityType = {
   id: number;
 };
 
+type getCityValue = (value: string) => CityType;
+
 type PropsType = {
   cities: CityType[];
   name: string;
@@ -25,15 +27,22 @@ const SearchAbleInput = ({
   label,
   required,
 }: PropsType) => {
-  useEffect(() => {
-    if (value) {
-      console.log("Value ----> ", value);
-      const cityField = document.getElementsByName("city");
-      if (cityField && cityField.length) {
-        cityField[0].value = value;
+  const getData: getCityValue = (value) => {
+    let city = { label: "", id: 100 };
+    if (!value || !value.trim()) {
+      return city;
+    }
+    for (let item of cities) {
+      if (item.label === value) {
+        city = item;
+        break;
       }
     }
-  }, [value]);
+    if (!city.label.trim()) {
+      city.label = value;
+    }
+    return city;
+  };
 
   return (
     <Box
@@ -49,12 +58,14 @@ const SearchAbleInput = ({
         disablePortal
         id="combo-box-demo"
         options={cities}
+        value={getData(value)}
         onChange={(_, option) => handleChange(name, option?.label || "")}
         sx={{ width: "83%", "& .MuiAutocomplete-inputRoot": { paddingTop: 0 } }}
         renderInput={(params) => (
           <TextField
             sx={{
               input: {
+                opacity: 1,
                 "&::placeholder": {
                   color: "#8e8e8e",
                   opacity: 1,

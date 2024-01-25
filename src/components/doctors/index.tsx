@@ -96,6 +96,7 @@ const DoctsAppointment = ({
       ) : (
         doctorsData.map((doctr) => (
           <Chip
+            key={doctr.id}
             label={<ChipLabel doctorData={doctr} />}
             sx={{
               height: "auto",

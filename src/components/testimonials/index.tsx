@@ -95,7 +95,7 @@ const Testimonials = () => {
       <Box>
         <Slider {...settings} ref={sliderRef}>
           {reviews.map((data) => (
-            <Box className="review-card">
+            <Box className="review-card" key={data.id}>
               <Box className="review-text">
                 "
                 {data.review.length > 200
@@ -105,7 +105,7 @@ const Testimonials = () => {
               </Box>
               <Box className="review-star-rating">
                 {Array.from({ length: 5 }, (_, i) => i + 1).map((value) => (
-                  <Box>
+                  <Box key={value}>
                     {value <= Number(data.rating) ? (
                       <StarOutlinedIcon sx={{ color: "gold" }} />
                     ) : (

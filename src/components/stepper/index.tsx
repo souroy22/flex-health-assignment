@@ -98,7 +98,7 @@ const CustomizedSteppers = ({ steps, activeStep }: PropType) => {
         activeStep={activeStep}
         connector={<ColorlibConnector />}
       >
-        {steps.map((label) => (
+        {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel
               className="stepper-1"

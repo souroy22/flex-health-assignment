@@ -112,7 +112,8 @@ const StepForm = () => {
 
   const onHandleContinue = () => {
     if (currentStep < steps.length - 1) {
-      if (currentStep === 1 && Number((data["Step 1"] as Step1Type).age) < 40) {
+      if (currentStep === 2 && Number((data["Step 1"] as Step1Type).age) < 40) {
+        getDoctorsData((data["Step 1"] as Step1Type).city);
         setCurrentStep(currentStep + 2);
       } else if (currentStep === 3) {
         getDoctorsData((data["Step 1"] as Step1Type).city);
@@ -144,8 +145,6 @@ const StepForm = () => {
       onStart(val);
     }
   }, []);
-
-  console.log("Current Step", currentStep);
 
   return (
     <Box className="step-form-section" id="step-form-section">
