@@ -3,7 +3,7 @@ import "./style.css";
 import InputField from "../text-field";
 import PhoneInputField from "../phone-input-field";
 import CustomizedSteppers from "../stepper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DoctsAppointment from "../doctors";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SearchAbleInput from "../autocompleteInput";
@@ -131,6 +131,21 @@ const StepForm = () => {
       setSuccessSubmitData(true);
     }
   };
+
+  const getParamsValue = (param: string) => {
+    let params = new URLSearchParams(document.location.search);
+    return params.get(param) || null;
+  };
+
+  useEffect(() => {
+    const val = getParamsValue("city");
+    if (val !== null) {
+      const newData = { ...data["Step 1"], ["city"]: val };
+      data["Step 1"] = newData;
+      setData(data);
+      setFakeUpdate(!fakeUpdate);
+    }
+  }, []);
 
   return (
     <Box className="step-form-section" id="step-form-section">

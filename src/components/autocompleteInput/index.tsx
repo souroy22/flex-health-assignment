@@ -69,15 +69,7 @@ const SearchAbleInput = ({
   }, []);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Box className="autocomplete-wrapper">
       <Autocomplete
         disablePortal
         id="combo-box-demo"
