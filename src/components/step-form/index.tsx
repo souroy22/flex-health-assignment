@@ -110,7 +110,6 @@ const StepForm = () => {
         break;
       }
     }
-
     setData(() => data);
     setIsValid(check);
     setFakeUpdate(!fakeUpdate);
