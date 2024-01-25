@@ -30,7 +30,7 @@ const Navbar = () => {
     <Box className="navbar-section">
       <Box className="navbar-left">
         <img
-          src="src/assets/images/_85c28ae3-59ee-411a-a946-7becf1876ea6.jpg"
+          src="/vite.jpg"
           style={{ width: "30px", height: "30px", borderRadius: "50%" }}
         />
       </Box>
