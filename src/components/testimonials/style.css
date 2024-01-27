@@ -7,8 +7,9 @@
     #ffcc70 100%
   );
   font-size: 60px;
+  background-clip: text;
   -webkit-background-clip: text;
-  color: "transparent";
+  color: transparent;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }

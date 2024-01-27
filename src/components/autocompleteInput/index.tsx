@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import "./style.css";
 import { useEffect } from "react";
 
@@ -90,7 +90,8 @@ const SearchAbleInput = ({
               "& .MuiInputBase-root": {
                 backgroundColor: "white",
                 opacity: 1,
-                "& .focus": {
+
+                "&:focus-within": {
                   backgroundColor: "white",
                   opacity: 1,
                 },
@@ -98,6 +99,9 @@ const SearchAbleInput = ({
                   backgroundColor: "white",
                   opacity: 1,
                 },
+              },
+              "& .Mui-focused": {
+                backgroundColor: "white",
               },
             }}
             {...params}
