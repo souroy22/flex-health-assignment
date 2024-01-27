@@ -31,7 +31,12 @@ const Navbar = () => {
       <Box className="navbar-left">
         <img
           src="/vite.jpg"
-          style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+          style={{
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
         />
       </Box>
       <Box className="navbar-right">
