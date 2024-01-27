@@ -141,7 +141,6 @@ const StepForm = () => {
   };
 
   useEffect(() => {
-    getDoctorsData("Kolkata");
     const val = getParamsValue("city");
     if (val !== null) {
       const newData = { ...data["Step 1"], ["city"]: val };
