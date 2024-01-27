@@ -53,7 +53,7 @@ type doctor = {
 // axios.defaults.baseURL = "https://flex-health.vercel.app/api/v1";
 // axios.defaults.baseURL = "http://localhost:5000/api/v1";
 // axios.defaults.baseURL = "https://flex-health.onrender.com/api/v1";
-axios.defaults.baseURL = "doctors-server-new-production.up.railway.app/api/v1";
+axios.defaults.baseURL = "https://flex-health.up.railway.app/api/v1";
 
 const StepForm = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -142,6 +142,7 @@ const StepForm = () => {
   };
 
   useEffect(() => {
+    getDoctorsData("Kolkata");
     const val = getParamsValue("city");
     if (val !== null) {
       const newData = { ...data["Step 1"], ["city"]: val };
