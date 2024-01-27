@@ -100,9 +100,6 @@ const SearchAbleInput = ({
                   opacity: 1,
                 },
               },
-              "& .Mui-focused": {
-                backgroundColor: "white",
-              },
             }}
             {...params}
             variant="filled"
