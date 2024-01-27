@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import "./style.css";
 import { useEffect } from "react";
 
